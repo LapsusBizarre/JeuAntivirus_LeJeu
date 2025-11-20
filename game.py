@@ -18,20 +18,20 @@ class Level:
     def valeur_virus(self): # Permet de définir les touches "autorisées" pour bouger les players existants
         bouton = {}
         for element in self.list_virus:
-            if element == "virus":
-                bouton[1073741922]=self.virus
-            elif element == "blue_2":
-                bouton[1073741913]=self.blue_2
-            elif element == "orange_3":
-                bouton[1073741914]=self.orange_3
+            if element == "Virus":
+                bouton[1073741922]=self.Virus
+            elif element == "Blue_2":
+                bouton[1073741913]=self.Blue_2
+            elif element == "Orange_3":
+                bouton[1073741914]=self.Orange_3
             elif element == "pink_2":
                 bouton[1073741915]=self.pink_2
             elif element == "green_2":
                 bouton[1073741916]=self.green_2
             elif element == "blue_3":
                 bouton[1073741917]=self.blue_3
-            elif element == "purple_3":
-                bouton[1073741918]=self.purple_3
+            elif element == "Purple_3":
+                bouton[1073741918]=self.Purple_3
             elif element == "green_3":
                 bouton[1073741919]=self.green_3
             elif element == "yellow_3":
@@ -50,7 +50,7 @@ class Level:
         self.level_complete = False
 
     def ecran_dacceuil(self):
-        self.list_virus = ["virus"]
+        self.list_virus = ["Virus"]
         self.creation_virus()
 
     def level_1(self):
@@ -58,7 +58,7 @@ class Level:
         self.creation_virus()
 
     def level_2(self):
-        self.list_virus = ["virus","orange_3"]
+        self.list_virus = ["virus","Orange_3"]
         self.creation_virus()
 
     def level_3(self):

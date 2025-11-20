@@ -58,7 +58,7 @@ Expert_button_rect.y = math.ceil(screen.get_height()/4)
 
 #charger notre jeu et defini le level
 game = game.Level()
-joueur_clique = game.virus
+joueur_clique = game.Virus
 running = True
 
 #boucle tant que cette condition est vraie
@@ -79,8 +79,8 @@ while running:
 
     # Permet le changement de niveau
 
-    if game.virus.rect.x <= 215 and game.virus.rect.y <= 39:
-        game.virus.move_up()
+    if game.Virus.rect.x <= 215 and game.Virus.rect.y <= 39:
+        game.Virus.move_up()
         game.level_complete = True
 
     if game.level_complete:
