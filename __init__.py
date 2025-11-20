@@ -79,7 +79,7 @@ while running:
 
     # Permet le changement de niveau
 
-    if game.virus.rect.x <= 215 and game.virus.rect.y <= 39 :
+    if game.virus.rect.x <= 215 and game.virus.rect.y <= 39:
         game.virus.move_up()
         game.level_complete = True
 
@@ -107,7 +107,7 @@ while running:
         # détecte si un joueur lâche une touche du clavier
 
         elif event.type == pygame.KEYDOWN:
-            # Liste des virus existant : virus,blue_2,orange_3,pink_2,green_2,blue_3,purple_3,green_3,yellow_3
+
 
             keys = pygame.key.get_pressed()
             for element in game.bouton_utilisable.keys():
@@ -116,15 +116,13 @@ while running:
 
             if event.key == pygame.K_RIGHT and (joueur_clique.rect.x< 740 - joueur_clique.bottom_x  and joueur_clique.rect.y > 39) :
                 joueur_clique.move_right()
-                #PROBELEME SUR LE MUR BAS AVEC LE PAD GAUCHE ET  AVEC VIRUS, BLEU2, PINK, VERT2
             elif event.key == pygame.K_LEFT  and (joueur_clique.rect.x > 215 and joueur_clique.rect.y< 562 - joueur_clique.bottom_y) :
                 joueur_clique.move_left()
-                #PROBLEME SUR LE MUR DROITE AVEC LE PAD DROITE ET BAS AVEC VERT3
             elif event.key == pygame.K_UP and (joueur_clique.rect.x > 216 and joueur_clique.rect.y  > 39 ) :
                 joueur_clique.move_up()
             elif event.key == pygame.K_DOWN and ( joueur_clique.rect.x < 740 - joueur_clique.bottom_x and joueur_clique.rect.y < 562 -joueur_clique.bottom_y) :
                 joueur_clique.move_down()
-                #PROBLEME SUR LE PLACEMENT DU JAUNE
+
 
 
             # Permet l'initalisation du debut - PROBLEME : le systeme de niveau n'est pas implementé
