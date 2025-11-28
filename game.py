@@ -52,13 +52,12 @@ class Level:
         self.joueur_clique = self.Virus
 
     def ecran_dacceuil(self):
-        self.list_virus = ["Virus"]
+        self.list_virus = ["Virus","Blue_2","Orange_3"]
         self.creation_virus()
 
     def level_1(self):
         #self.position = [["Virus", {x:2,y:2}],["purple_3", {x:6,y:9}]]
         self.list_virus = ["virus","purple_3"]
-
         self.creation_virus()
 # TEST :  TRANSFORMER LES VALEUR EN POINT DE DéPART -> self.Position
     def level_2(self):

@@ -43,12 +43,37 @@ class Virus(Player):
 
         super().__init__("virus")
 
-        self.Ax = 50
-        self.Ay = 50
-        self.Bx = 124
-        self.By = 124
+        self.Ax = 51
+        self.Ay = 51
+        self.Bx = 125
+        self.By = 125
         self.Cx = None
         self.Cy = None
 
+        self.rect.x -= self.Ax
+        self.rect.y -= self.Ay
+
+class Blue_2(Player):
+
+    def __init__(self):
+        super().__init__("blue_2")
+        self.Ax = 51
+        self.Ay = 51
+        self.Bx = 125
+        self.By = 125
+        self.Cx = None
+        self.Cy = None
+        self.rect.x -= self.Ax
+        self.rect.y -= self.Ay
+
+class Orange_3(Player):
+    def __init__(self):
+        super().__init__("orange_3")
+        self.Ax = 51
+        self.Ay = 51
+        self.Bx = 126
+        self.By = 126
+        self.Cx = 200
+        self.Cy = 50
         self.rect.x -= self.Ax
         self.rect.y -= self.Ay
