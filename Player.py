@@ -14,8 +14,8 @@ class Player(pygame.sprite.Sprite):
         self.velocity = 70
 
         # Permet de définir la position de départ - LE RECT X ET Y NE SONT QUE TEMPORAIRE
-        self.rect.x = 692
-        self.rect.y = 512
+        self.rect.x = 266
+        self.rect.y = 88
 
         self.bottom_x = self.rect.bottomright[0] - self.rect.topleft[0]
         self.bottom_y = self.rect.bottomright[1] - self.rect.topleft[1]
@@ -39,3 +39,15 @@ class Player(pygame.sprite.Sprite):
     def move_down(self):
         self.rect.x += self.velocity
         self.rect.y += self.velocity
+
+class Virus(Player):
+    def __init__(self, name="Virus"):
+
+        super().__init__(name)
+
+        self.Ax = 50
+        self.Ay = 50
+        self.Bx = 124
+        self.By = 124
+        self.Cx = None
+        self.Cy = None

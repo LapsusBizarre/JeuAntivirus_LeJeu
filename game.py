@@ -54,7 +54,7 @@ class Level:
         self.creation_virus()
 
     def level_1(self):
-        self.position = [["Virus", {x:2,y:2}],["purple_3", {x:6,y:9}]]
+        #self.position = [["Virus", {x:2,y:2}],["purple_3", {x:6,y:9}]]
         self.list_virus = ["virus","purple_3"]
 
         self.creation_virus()

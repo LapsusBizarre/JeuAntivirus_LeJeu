@@ -1,6 +1,9 @@
+#Import des pages externe
+
 import pygame
 import game
-import math
+import PagedAccueil
+
 import time
 
 pygame.init()
@@ -8,49 +11,6 @@ pygame.init()
 # générer la fenêtre de jeu
 pygame.display.set_caption("Anti Virus")
 screen = pygame.display.set_mode((960,600))
-
-#importer de charger l'arriere plan de notre jeu
-background=pygame.image.load('PygameAssets-Jeu_AntiVirus/download.jpg')
-
-#importer charger notre banniere
-banner = pygame.image.load('PygameAssets-Jeu_AntiVirus/sglLogo.png')
-banner = pygame.transform.scale(banner, (116, 175))
-banner_rect = banner.get_rect()
-banner_rect.x = math.ceil(screen.get_width()/2.25)
-#banner_rect.y = math.ceil(screen.get_width()/2)     # ne fonctionne pas, permet de placer l'image sur l'axe y
-
-#import charger notre bouton pour lancer la partie
-#image du bouton Starter
-play_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Startbutton.png')
-play_button = pygame.transform.scale(play_button, (272, 61))
-play_button_rect = play_button.get_rect()
-play_button_rect.x = math.ceil(screen.get_width()/3.33)
-play_button_rect.y = math.ceil(screen.get_height()/2)
-
-#Import charger nos boutons pour choisir le niveaux
-#image du bouton Junior
-Junior_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Junior_button.png')
-Junior_button = pygame.transform.scale(Junior_button, (275, 60))
-Junior_button_rect = Junior_button.get_rect()
-Junior_button_rect.x = math.ceil(screen.get_width()/2)
-Junior_button_rect.y = math.ceil(screen.get_height()/2)
-
-#image du bouton Master
-Master_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Master_button.png')
-Master_button = pygame.transform.scale(Master_button, (272, 60))
-Master_button_rect = Master_button.get_rect()
-Master_button_rect.x = math.ceil(screen.get_width()/4)
-Master_button_rect.y = math.ceil(screen.get_height()/3)
-
-#image du bouton Expert
-Expert_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Expert_button.png')
-Expert_button = pygame.transform.scale(Expert_button, (274, 58))
-Expert_button_rect = Master_button.get_rect()
-Expert_button_rect.x = math.ceil(screen.get_width()/4)
-Expert_button_rect.y = math.ceil(screen.get_height()/4)
-
-
-
 
 
 
@@ -65,20 +25,20 @@ running = True
 while running:
 
     #appliquer l'arriere plan de notre jeu
-    screen.blit(background, (0, 0))
+    screen.blit(PagedAccueil.background, (0, 0))
 
     if not game.is_playing:
         # vérifier si notre n'a pas commencé
         # ajouter mon écran de bienvenue
-        screen.blit(banner,
-                    banner_rect)  # si je veux superposer des images, je met mon code de l'image qui est en dessous avant celui qui est au dessus
-        screen.blit(play_button, (200, 300))
-        screen.blit(Junior_button, (500, 300))
-        screen.blit(Master_button, (200, 200))
-        screen.blit(Expert_button, (500, 200))
+        screen.blit(PagedAccueil.banner,
+                    PagedAccueil.banner_rect)  # si je veux superposer des images, je met mon code de l'image qui est en dessous avant celui qui est au dessus
+        screen.blit(PagedAccueil.play_button, (200, 300))
+        screen.blit(PagedAccueil.Junior_button, (500, 300))
+        screen.blit(PagedAccueil.Master_button, (200, 200))
+        screen.blit(PagedAccueil.Expert_button, (500, 200))
 
     # Permet le changement de niveau
-
+    '''
     if game.Virus.rect.x <= 215 and game.Virus.rect.y <= 39:
         game.Virus.move_up()
         game.level_complete = True
@@ -86,7 +46,7 @@ while running:
     if game.level_complete:
         time.sleep(4)
         game.next_level()
-
+    '''
     # Fin de changement de niveau
 
     #appliquer l'image des different element
@@ -129,7 +89,7 @@ while running:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             #vérification pour savoir si la souris est en collision avec le bouton jouer
-            if play_button_rect.collidepoint(event.pos) or Junior_button_rect.collidepoint(event.pos) or Master_button_rect.collidepoint(event.pos) or Expert_button_rect.collidepoint(event.pos):
+            if PagedAccueil.play_button_rect.collidepoint(event.pos) or PagedAccueil.Junior_button_rect.collidepoint(event.pos) or PagedAccueil.Master_button_rect.collidepoint(event.pos) or PagedAccueil.Expert_button_rect.collidepoint(event.pos):
                 #mettre le jeu en mode "lancé"
                 game.is_playing = True
                 game.next_level()
