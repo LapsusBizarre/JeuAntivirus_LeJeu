@@ -14,6 +14,7 @@ class Level:
         self.nb_level = -1
         self.next_level()
         self.level_complete = False
+        self.joueur_clique = self.Virus
 
     def valeur_virus(self): # Permet de définir les touches "autorisées" pour bouger les players existants
         bouton = {}
@@ -40,7 +41,7 @@ class Level:
 
     def creation_virus(self):
         for name in self.list_virus:
-            setattr(self, name, Player.Player(name))
+            setattr(self, name, getattr(Player, name)())
         self.bouton_utilisable = self.valeur_virus()
 
 
@@ -48,6 +49,7 @@ class Level:
         self.nb_level += 1
         self.list_level[self.nb_level]()
         self.level_complete = False
+        self.joueur_clique = self.Virus
 
     def ecran_dacceuil(self):
         self.list_virus = ["Virus"]

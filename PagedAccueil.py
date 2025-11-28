@@ -1,44 +1,23 @@
 import pygame
-import math
+import assest
 
-screen = pygame.display.set_mode((960,600))
+def main():
+    # vérifier si notre n'a pas commencé
+    # ajouter mon écran de bienvenue
+    assest.screen.blit(assest.banner,
+                assest.banner_rect)  # si je veux superposer des images, je met mon code de l'image qui est en dessous avant celui qui est au dessus
+    assest.screen.blit(assest.play_button, (200, 300))
+    assest.screen.blit(assest.Junior_button, (500, 300))
+    assest.screen.blit(assest.Master_button, (200, 200))
+    assest.screen.blit(assest.Expert_button, (500, 200))
 
-#importer de charger l'arriere plan de notre jeu
-background=pygame.image.load('PygameAssets-Jeu_AntiVirus/download.jpg')
+    pygame.display.flip()
 
-#importer charger notre banniere
-banner = pygame.image.load('PygameAssets-Jeu_AntiVirus/sglLogo.png')
-banner = pygame.transform.scale(banner, (116, 175))
-banner_rect = banner.get_rect()
-banner_rect.x = math.ceil(screen.get_width()/2.25)
-#banner_rect.y = math.ceil(screen.get_width()/2)     # ne fonctionne pas, permet de placer l'image sur l'axe y
-
-#import charger notre bouton pour lancer la partie
-#image du bouton Starter
-play_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Startbutton.png')
-play_button = pygame.transform.scale(play_button, (272, 61))
-play_button_rect = play_button.get_rect()
-play_button_rect.x = math.ceil(screen.get_width()/3.33)
-play_button_rect.y = math.ceil(screen.get_height()/2)
-
-#Import charger nos boutons pour choisir le niveaux
-#image du bouton Junior
-Junior_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Junior_button.png')
-Junior_button = pygame.transform.scale(Junior_button, (275, 60))
-Junior_button_rect = Junior_button.get_rect()
-Junior_button_rect.x = math.ceil(screen.get_width()/2)
-Junior_button_rect.y = math.ceil(screen.get_height()/2)
-
-#image du bouton Master
-Master_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Master_button.png')
-Master_button = pygame.transform.scale(Master_button, (272, 60))
-Master_button_rect = Master_button.get_rect()
-Master_button_rect.x = math.ceil(screen.get_width()/4)
-Master_button_rect.y = math.ceil(screen.get_height()/3)
-
-#image du bouton Expert
-Expert_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Expert_button.png')
-Expert_button = pygame.transform.scale(Expert_button, (274, 58))
-Expert_button_rect = Master_button.get_rect()
-Expert_button_rect.x = math.ceil(screen.get_width()/4)
-Expert_button_rect.y = math.ceil(screen.get_height()/4)
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            #vérification pour savoir si la souris est en collision avec le bouton jouer
+            if assest.play_button_rect.collidepoint(event.pos) or assest.Junior_button_rect.collidepoint(event.pos) or assest.Master_button_rect.collidepoint(event.pos) or assest.Expert_button_rect.collidepoint(event.pos):
+                #mettre le jeu en mode "lancé"
+                return True
+            else :
+                return False
