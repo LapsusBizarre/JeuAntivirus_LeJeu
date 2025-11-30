@@ -77,3 +77,15 @@ class Orange_3(Player):
         self.Cy = 50
         self.rect.x -= self.Ax
         self.rect.y -= self.Ay
+
+class Purple_3(Player):
+    def __init__(self):
+        super().__init__("purple_3")
+        self.Ax = 195
+        self.Ay = 51
+        self.Bx = 201
+        self.By = 199
+        self.Cx = 53
+        self.Cy = 199
+        self.rect.x -= self.Ax
+        self.rect.y -= self.Ay

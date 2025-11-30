@@ -45,7 +45,7 @@ while running:
         #appliquer l'image des different element
 
         for element in game.list_virus:
-            joueur = getattr(game, element)
+            joueur = getattr(game, element[0])
             screen.blit(joueur.image, joueur.rect) #player.rect est le déplacement
 
         #mettre à jour l'écran

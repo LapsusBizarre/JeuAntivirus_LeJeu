@@ -1,5 +1,7 @@
 import pygame
 import assest
+import game
+
 
 def main():
     # vérifier si notre n'a pas commencé
@@ -16,8 +18,11 @@ def main():
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             #vérification pour savoir si la souris est en collision avec le bouton jouer
-            if assest.play_button_rect.collidepoint(event.pos) or assest.Junior_button_rect.collidepoint(event.pos) or assest.Master_button_rect.collidepoint(event.pos) or assest.Expert_button_rect.collidepoint(event.pos):
+            if assest.Junior_button_rect.collidepoint(event.pos) or assest.Master_button_rect.collidepoint(event.pos) or assest.Expert_button_rect.collidepoint(event.pos):
                 #mettre le jeu en mode "lancé"
+                return True
+            elif assest.play_button_rect.collidepoint(event.pos):
+                game.nb_level = 1
                 return True
             else :
                 return False
