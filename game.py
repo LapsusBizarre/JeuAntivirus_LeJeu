@@ -9,7 +9,7 @@ class Level:
         self.is_playing = False
 
         self.list_virus = []
-        self.list_level = [self.ecran_dacceuil,self.niveau_facile]
+        self.list_level = [self.ecran_dacceuil,self.niveau_facile,self.niveau_moyen]
         self.bouton_utilisable = {}
 
         self.coordonne = {}
@@ -66,7 +66,9 @@ class Level:
             elif element[0] == "yellow_3":
                 virus_colision[1073741920] = "Yellow_3"
         return virus_colision
-
+    def choix_level(self,valeur):
+        self.nb_level += valeur -1
+        self.next_level()
     def next_level(self):
         try :
             self.nb_level += 1
@@ -79,6 +81,7 @@ class Level:
             text_surface = my_font.render('Merci d\'avoir jouer au jeu', False, (255, 255, 255))
             screen = pygame.display.set_mode((960,600))
             screen.blit(text_surface, (300, 300))
+            self.is_playing = False
 
 
     def creation_virus(self):
@@ -91,7 +94,6 @@ class Level:
             self.coordonne[name[0]] = [(getattr(self, name[0]).Ax,getattr(self, name[0]).Ay),
                                (getattr(self, name[0]).Bx,getattr(self, name[0]).By),
                                (getattr(self, name[0]).Cx,getattr(self, name[0]).Cy)]
-            #self.coordonne[name[0]] = ((getattr(self, name[0]).Ax,getattr(self, name[0]).Ay),(getattr(self, name[0]).Bx,getattr(self, name[0]).By),(getattr(self, name[0]).Cx,getattr(self, name[0]).Cy))
 
         self.bouton_utilisable = self.valeur_virus()
         self.virus_coordonne = self.colisition_virus()
@@ -111,10 +113,7 @@ class Level:
                 if valeur[i][0] != None or valeur[i][1] != None :
                     coordonne_autre.append(((getattr(self,key).rect.x + valeur[i][0],
                                              getattr(self,key).rect.y + valeur[i][1])))
-        print("-" * 20)
-        print(coordonne_virus)
-        print(coordonne_autre)
-        print("-"*20)
+
         def systeme_bool(bool:bool,value_origine,value_seconde):
             if bool:
                 return value_seconde-10 <= value_origine+70 <= value_seconde+10
@@ -123,22 +122,12 @@ class Level:
 
         for i in coordonne_virus:
             for j in coordonne_autre:
-                print("coordonée de l'atome :" ,i[0],i[1],"coordonée de l'autre :",j[0],j[1])
-                print("*"*20)
-
                 if systeme_bool(hautx,i[0],j[0]) and systeme_bool(hauty,i[1],j[1]):
-                    print("coordonée de l'atome problm :", (i[0]+70, i[1]+70), "True, True","coordonée de l'autre :", (j[0], j[1]))
-                    print("coordonée de l'atome problm :", (i[0] - 70, i[1] + 70),"False,True" ,"coordonée de l'autre :",
-                          (j[0], j[1]))
-                    print("coordonée de l'atome problm :", (i[0] + 70, i[1] - 70),"True, false", "coordonée de l'autre :",
-                          (j[0], j[1]))
-                    print("coordonée de l'atome problm :", (i[0] - 70, i[1] - 70), "False False", "coordonée de l'autre :",
-                          (j[0], j[1]))
                     return False
-        return True # return true si pas de probleme or False si un atome est là(Objectif)
+        return True # return true si pas de probleme or False si un atome est là
 
     def ecran_dacceuil(self):
-        self.list_virus = [["Virus",{"x":4 , "y":6}]]
+        self.list_virus = [["Virus",{"x":0.5 , "y":0.5}]]
         self.creation_virus()
 
     def niveau_facile(self):
@@ -148,5 +137,5 @@ class Level:
         self.creation_virus()
 
     def niveau_moyen(self):
-        self.list_virus = []
+        self.list_virus = [["Virus",{"x":0.5 , "y":0.5}]]
         self.creation_virus()
