@@ -82,18 +82,19 @@ while running:
                 for element in game.bouton_utilisable.keys():
                     if keys[element]:
                         game.joueur_clique = game.bouton_utilisable[element]
-                        print(game.verification(game.virus_coordonne[element], True, True)) #TEST
+                        game.virus_clique = game.virus_coordonne[element]
+
                 if event.key == pygame.K_RIGHT and (game.joueur_clique.rect.x< 740 - game.joueur_clique.bottom_x  and game.joueur_clique.rect.y > 39) :
-                    if game.verification(game.virus_coordonne[element], False, True):
+                    if game.verification(game.virus_clique, True, False):
                         game.joueur_clique.move_right()
                 elif event.key == pygame.K_LEFT  and (game.joueur_clique.rect.x > 215 and game.joueur_clique.rect.y< 562 - game.joueur_clique.bottom_y) :
-                    if game.verification(game.virus_coordonne[element], True, False):
+                    if game.verification(game.virus_clique, False, True):
                         game.joueur_clique.move_left()
                 elif event.key == pygame.K_UP and (game.joueur_clique.rect.x > 216 and game.joueur_clique.rect.y  > 39 ) :
-                    if game.verification(game.virus_coordonne[element], True, True):
+                    if game.verification(game.virus_clique, False, False):
                         game.joueur_clique.move_up()
                 elif event.key == pygame.K_DOWN and ( game.joueur_clique.rect.x < 740 - game.joueur_clique.bottom_x and game.joueur_clique.rect.y < 562 -game.joueur_clique.bottom_y) :
-                    if game.verification(game.virus_coordonne[element], False, False):
+                    if game.verification(game.virus_clique, True, True):
                         game.joueur_clique.move_down()
 
 

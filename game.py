@@ -14,6 +14,7 @@ class Level:
 
         self.coordonne = {}
         self.virus_coordonne = {}
+        self.virus_clique = "Virus"
 
         self.nb_level = -1
         self.next_level()
@@ -84,8 +85,8 @@ class Level:
         self.coordonne = {}
         for name in self.list_virus:
             setattr(self, name[0], getattr(Player, name[0])())
-            getattr(self, name[0]).rect.x += 70*name[1]["x"]
-            getattr(self, name[0]).rect.y += 70*name[1]["y"]
+            getattr(self, name[0]).rect.x += 140*name[1]["x"]
+            getattr(self, name[0]).rect.y += 140*name[1]["y"]
 
             self.coordonne[name[0]] = [(getattr(self, name[0]).Ax,getattr(self, name[0]).Ay),
                                (getattr(self, name[0]).Bx,getattr(self, name[0]).By),
@@ -110,13 +111,15 @@ class Level:
                 if valeur[i][0] != None or valeur[i][1] != None :
                     coordonne_autre.append(((getattr(self,key).rect.x + valeur[i][0],
                                              getattr(self,key).rect.y + valeur[i][1])))
+        print("-" * 20)
+        print(coordonne_virus)
         print(coordonne_autre)
-
+        print("-"*20)
         def systeme_bool(bool:bool,value_origine,value_seconde):
-            if bool == True:
+            if bool:
                 return value_seconde-10 <= value_origine+70 <= value_seconde+10
             else :
-                return value_seconde-10 <= value_origine-70 <= value_seconde+10 # aps encore bon
+                return value_seconde-10 <= value_origine-70 <= value_seconde+10
 
         for i in coordonne_virus:
             for j in coordonne_autre:
@@ -140,7 +143,8 @@ class Level:
 
     def niveau_facile(self):
         self.list_virus = [["Virus", {"x": 2, "y": 2}],
-                           ["Purple_3", {"x": 3, "y": 3}]]
+                           ["Purple_3", {"x": 1, "y": 1}],
+                           ["Blue_2", {"x": 4, "y": 4}]]
         self.creation_virus()
 
     def niveau_moyen(self):
