@@ -1,4 +1,22 @@
 import pygame
+import math
+
+class Cercle:
+    def __init__(self, x, y, rayon):
+        self.x = x
+        self.y = y
+        self.rayon = rayon
+
+    def deplacer(self, dx, dy):
+        self.x += dx
+        self.y += dy
+
+    def collision_avec(self, autre_cercle):
+        dx = self.x - autre_cercle.x
+        dy = self.y - autre_cercle.y
+        distance = math.sqrt(dx**2 + dy**2)
+        return distance < (self.rayon + autre_cercle.rayon)
+
 class Player(pygame.sprite.Sprite):
 
     def __init__(self, name):
@@ -8,7 +26,6 @@ class Player(pygame.sprite.Sprite):
         # Permet d'initialiser pour chaque virus demandé
         self.image = pygame.image.load(f'PygameAssets-Jeu_AntiVirus/{name}.PNG')
         self.rect = self.image.get_rect()
-        print(self.image)
 
         # Permet de définir la taille du déplacement
         self.velocity = 70
@@ -19,7 +36,6 @@ class Player(pygame.sprite.Sprite):
 
         self.bottom_x = self.rect.bottomright[0] - self.rect.topleft[0]
         self.bottom_y = self.rect.bottomright[1] - self.rect.topleft[1]
-
 
 
     def move_right(self):

@@ -2,7 +2,6 @@
 
 import pygame
 import game
-import PagedAccueil
 import assest
 
 import time
@@ -24,7 +23,25 @@ running = True
 #boucle tant que cette condition est vraie
 while running:
     if not game.is_playing :
-        game.is_playing = PagedAccueil.main()
+        assest.screen.blit(assest.banner,
+                           assest.banner_rect)  # si je veux superposer des images, je met mon code de l'image qui est en dessous avant celui qui est au dessus
+        assest.screen.blit(assest.play_button, (200, 300))
+        assest.screen.blit(assest.Junior_button, (500, 300))
+        assest.screen.blit(assest.Master_button, (200, 200))
+        assest.screen.blit(assest.Expert_button, (500, 200))
+
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # vérification pour savoir si la souris est en collision avec le bouton jouer
+                if assest.Junior_button_rect.collidepoint(event.pos) or assest.Master_button_rect.collidepoint(
+                        event.pos) or assest.Expert_button_rect.collidepoint(event.pos):
+                    # mettre le jeu en mode "lancé"
+                    game.is_playing = True
+                elif assest.play_button_rect.collidepoint(event.pos):
+                    game.next_level()
+                    game.is_playing = True
 
     else:
         #appliquer l'arriere plan de notre jeu
@@ -37,7 +54,6 @@ while running:
             game.level_complete = True
     
         if game.level_complete:
-            time.sleep(4)
             game.next_level()
         '''
         # Fin de changement de niveau
@@ -62,20 +78,23 @@ while running:
 
             elif event.type == pygame.KEYDOWN:
 
-
                 keys = pygame.key.get_pressed()
                 for element in game.bouton_utilisable.keys():
                     if keys[element]:
                         game.joueur_clique = game.bouton_utilisable[element]
-
+                        print(game.verification(game.virus_coordonne[element], True, True)) #TEST
                 if event.key == pygame.K_RIGHT and (game.joueur_clique.rect.x< 740 - game.joueur_clique.bottom_x  and game.joueur_clique.rect.y > 39) :
-                    game.joueur_clique.move_right()
+                    if game.verification(game.virus_coordonne[element], False, True):
+                        game.joueur_clique.move_right()
                 elif event.key == pygame.K_LEFT  and (game.joueur_clique.rect.x > 215 and game.joueur_clique.rect.y< 562 - game.joueur_clique.bottom_y) :
-                    game.joueur_clique.move_left()
+                    if game.verification(game.virus_coordonne[element], True, False):
+                        game.joueur_clique.move_left()
                 elif event.key == pygame.K_UP and (game.joueur_clique.rect.x > 216 and game.joueur_clique.rect.y  > 39 ) :
-                    game.joueur_clique.move_up()
+                    if game.verification(game.virus_coordonne[element], True, True):
+                        game.joueur_clique.move_up()
                 elif event.key == pygame.K_DOWN and ( game.joueur_clique.rect.x < 740 - game.joueur_clique.bottom_x and game.joueur_clique.rect.y < 562 -game.joueur_clique.bottom_y) :
-                    game.joueur_clique.move_down()
+                    if game.verification(game.virus_coordonne[element], False, False):
+                        game.joueur_clique.move_down()
 
 
                 # Permet l'initalisation du debut - PROBLEME : le systeme de niveau n'est pas implementé
