@@ -132,8 +132,8 @@ class Level:
 
     def niveau_facile(self):
         self.list_virus = [["Virus", {"x": 2, "y": 2}],
-                           ["Purple_3", {"x": 1, "y": 1}],
-                           ["Blue_2", {"x": 4, "y": 4}]]
+                           ["Collision",{"x": 1, "y": 1} ],
+                           ["Purple_3", {"x": 1, "y": 1}]]
         self.creation_virus()
 
     def niveau_moyen(self):

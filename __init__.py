@@ -35,10 +35,8 @@ while running:
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # vérification pour savoir si la souris est en collision avec le bouton jouer
-                if assest.Junior_button_rect.collidepoint(event.pos) or assest.Master_button_rect.collidepoint(event.pos) or assest.Expert_button_rect.collidepoint(event.pos):
                     # mettre le jeu en mode "lancé"
-                    game.is_playing = True
-                elif assest.play_button_rect.collidepoint(event.pos):
+                if assest.play_button_rect.collidepoint(event.pos):
                     game.choix_level(1)
                     game.next_level()
                     game.is_playing = True
@@ -46,9 +44,16 @@ while running:
                     game.choix_level(2)
                     game.next_level()
                     game.is_playing = True
+                elif assest.Expert_button_rect.collidepoint(event.pos):
+                    game.choix_level(2)
+                    game.next_level()
+                    game.is_playing = True
+                elif assest.Master_button_rect.collidepoint(event.pos):
+                    game.choix_level(2)
+                    game.next_level()
+                    game.is_playing = True
 
     else:
-        print(game.nb_level)
         #appliquer l'arriere plan de notre jeu
         screen.blit(assest.background, (0, 0))
 

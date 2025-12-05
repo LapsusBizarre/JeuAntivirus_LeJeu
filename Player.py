@@ -69,6 +69,19 @@ class Virus(Player):
         self.rect.x -= self.Ax
         self.rect.y -= self.Ay
 
+class Collision(Player):
+    def __init__(self):
+        super().__init__("collision")
+        self.Ax = 50
+        self.Ay = 47
+        self.Bx = None
+        self.By = None
+        self.Cx = None
+        self.Cy = None
+        self.rect.x -= self.Ax
+        self.rect.y -= self.Ay
+
+
 class Blue_2(Player):
 
     def __init__(self):
