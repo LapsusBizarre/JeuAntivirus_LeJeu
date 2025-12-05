@@ -108,13 +108,23 @@ class Orange_3(Player):
         self.rect.y -= self.Ay
 
 class Purple_3(Player):
-    def __init__(self):
+    def __init__(self,rotate=0):
         super().__init__("purple_3")
+        self.image = pygame.transform.rotate(self.image, rotate)
         self.Ax = 195
         self.Ay = 51
-        self.Bx = 201
-        self.By = 199
+        if rotate == 180:
+            self.Bx = 53
+            self.By = 51
+        else :
+            self.Bx = 201
+            self.By = 199
         self.Cx = 53
         self.Cy = 199
-        self.rect.x -= self.Ax
-        self.rect.y -= self.Ay
+        if rotate == 180:
+            self.rect.x -= self.Bx
+            self.rect.y -= self.By
+        else :
+            self.rect.x -= self.Ax
+            self.rect.y -= self.Ay
+

@@ -6,12 +6,13 @@ screen = pygame.display.set_mode((960,600))
 #importer de charger l'arriere plan de notre jeu
 background=pygame.image.load('PygameAssets-Jeu_AntiVirus/download.jpg')
 
+background_intro = pygame.image.load("PygameAssets-Jeu_AntiVirus/bgLevelSelect.jpg")
+
 #importer charger notre banniere
 banner = pygame.image.load('PygameAssets-Jeu_AntiVirus/sglLogo.png')
-banner = pygame.transform.scale(banner, (116, 175))
+banner = pygame.transform.scale(banner, (120, 160))
 banner_rect = banner.get_rect()
-banner_rect.x = math.ceil(screen.get_width()/2.25)
-#banner_rect.y = math.ceil(screen.get_width()/2)
+banner_rect.bottomright = (960,600)
 
 #import charger notre bouton pour lancer la partie
 #image du bouton Starter

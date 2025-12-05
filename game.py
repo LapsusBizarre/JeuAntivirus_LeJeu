@@ -66,9 +66,12 @@ class Level:
             elif element[0] == "yellow_3":
                 virus_colision[1073741920] = "Yellow_3"
         return virus_colision
+
     def choix_level(self,valeur):
-        self.nb_level += valeur -1
+        self.nb_level = (valeur-1)
         self.next_level()
+        self.is_playing = True
+
     def next_level(self):
         try :
             self.nb_level += 1
@@ -87,7 +90,11 @@ class Level:
     def creation_virus(self):
         self.coordonne = {}
         for name in self.list_virus:
-            setattr(self, name[0], getattr(Player, name[0])())
+            if name[2] != 0:
+                setattr(self, name[0], getattr(Player, name[0])(name[2]))
+            else:
+                setattr(self, name[0], getattr(Player, name[0])())
+
             getattr(self, name[0]).rect.x += 140*name[1]["x"]
             getattr(self, name[0]).rect.y += 140*name[1]["y"]
 
@@ -127,15 +134,15 @@ class Level:
         return True # return true si pas de probleme or False si un atome est là
 
     def ecran_dacceuil(self):
-        self.list_virus = [["Virus",{"x":0.5 , "y":0.5}]]
+        self.list_virus = [["Virus",{"x":2 , "y":0},0]]
         self.creation_virus()
 
     def niveau_facile(self):
-        self.list_virus = [["Virus", {"x": 2, "y": 2}],
-                           ["Collision",{"x": 1, "y": 1} ],
-                           ["Purple_3", {"x": 1, "y": 1}]]
+        self.list_virus = [["Virus", {"x": 1, "y": 1}, 0],
+                           ["Collision",{"x": 2, "y": 2} , 0],
+                           ["Purple_3", {"x": 0.5, "y": 0.5}, 180]]
         self.creation_virus()
 
     def niveau_moyen(self):
-        self.list_virus = [["Virus",{"x":0.5 , "y":0.5}]]
+        self.list_virus = [["Virus",{"x":1.5 , "y":1.5},0]]
         self.creation_virus()

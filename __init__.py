@@ -23,8 +23,8 @@ running = True
 #boucle tant que cette condition est vraie
 while running:
     if not game.is_playing :
-        assest.screen.blit(assest.banner,
-                           assest.banner_rect)  # si je veux superposer des images, je met mon code de l'image qui est en dessous avant celui qui est au dessus
+        assest.screen.blit(assest.background_intro, (0, 0))
+        assest.screen.blit(assest.banner, assest.banner_rect)  # si je veux superposer des images, je mets mon code de l'image qui est en dessous avant celui qui est au dessus
         assest.screen.blit(assest.play_button, (200, 300))
         assest.screen.blit(assest.Junior_button, (500, 300))
         assest.screen.blit(assest.Master_button, (200, 200))
@@ -38,20 +38,17 @@ while running:
                     # mettre le jeu en mode "lancé"
                 if assest.play_button_rect.collidepoint(event.pos):
                     game.choix_level(1)
-                    game.next_level()
-                    game.is_playing = True
+
+                    print(game.nb_level)
                 elif assest.Junior_button_rect.collidepoint(event.pos):
                     game.choix_level(2)
-                    game.next_level()
-                    game.is_playing = True
+
                 elif assest.Expert_button_rect.collidepoint(event.pos):
                     game.choix_level(2)
-                    game.next_level()
-                    game.is_playing = True
+
                 elif assest.Master_button_rect.collidepoint(event.pos):
-                    game.choix_level(2)
-                    game.next_level()
-                    game.is_playing = True
+                    game.choix_level(0)
+
 
     else:
         #appliquer l'arriere plan de notre jeu
