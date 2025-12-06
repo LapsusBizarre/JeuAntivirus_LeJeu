@@ -83,6 +83,7 @@ while running:
 
             elif event.type == pygame.KEYDOWN:
                 keys = pygame.key.get_pressed()
+                print(event.key)
                 for element in game.bouton_utilisable.keys():
                     if keys[element]:
                         game.joueur_clique = game.bouton_utilisable[element]

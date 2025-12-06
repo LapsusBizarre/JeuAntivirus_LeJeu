@@ -21,30 +21,58 @@ class Level:
         self.level_complete = False
         self.joueur_clique = self.Virus
 
-    def valeur_virus(self): # Permet de définir les touches "autorisées" pour bouger les players existants
+    def creation_liste_numpad_virus(self): # Permet de définir les touches "autorisées" pour bouger les players existants
         bouton = {}
         for element in self.list_virus:
             if element[0] == "Virus":
                 bouton[1073741922]=self.Virus
+            elif element[0] == "Virus":
+                bouton[48] = self.Virus
+
             elif element[0] == "Blue_2":
                 bouton[1073741913]=self.Blue_2
+            elif element[0] == "Blue_2":
+                bouton[49]=self.Blue_2
+
             elif element[0] == "Orange_3":
                 bouton[1073741914]=self.Orange_3
+            elif element[0] == "Orange_3":
+                bouton[50] = self.Orange_3
+
             elif element[0] == "Pink_2":
                 bouton[1073741915]=self.Pink_2
+            elif element[0] == "Pink_2":
+                bouton[51]=self.Pink_2
+
             elif element[0] == "Green_2":
                 bouton[1073741916]=self.Green_2
+            elif element[0] == "Green_2":
+                bouton[52]=self.Green_2
+
             elif element[0] == "Blue_3":
                 bouton[1073741917]=self.Blue_3
+            elif element[0] == "Blue_3":
+                bouton[53]=self.Blue_3
+
             elif element[0] == "Purple_3":
                 bouton[1073741918]=self.Purple_3
+            elif element[0] == "Purple_3":
+                bouton[54]=self.Purple_3
+
             elif element[0] == "Green_3":
                 bouton[1073741919]=self.Green_3
+            elif element[0] == "Green_3":
+                bouton[55]=self.Green_3
+
             elif element[0] == "Yellow_3":
                 bouton[1073741920]=self.Yellow_3
+            elif element[0] == "Yellow_3":
+                bouton[56]=self.Yellow_3
+
+        print(bouton)
         return bouton
 
-    def colisition_virus(self):
+    def creation_liste_colisition_virus(self):
         virus_colision = {}
         for element in self.list_virus:
             if element[0] == "Virus":
@@ -102,8 +130,8 @@ class Level:
                                (getattr(self, name[0]).Bx,getattr(self, name[0]).By),
                                (getattr(self, name[0]).Cx,getattr(self, name[0]).Cy)]
 
-        self.bouton_utilisable = self.valeur_virus()
-        self.virus_coordonne = self.colisition_virus()
+        self.bouton_utilisable = self.creation_liste_numpad_virus()
+        self.virus_coordonne = self.creation_liste_colisition_virus()
 
 
     def verification_positions_atomes(self, virus, hautx:bool, hauty:bool):
