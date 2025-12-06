@@ -44,10 +44,10 @@ while running:
                     game.choix_level(2)
 
                 elif assest.Expert_button_rect.collidepoint(event.pos):
-                    game.choix_level(2)
+                    game.choix_level(3)
 
                 elif assest.Master_button_rect.collidepoint(event.pos):
-                    game.choix_level(0)
+                    game.choix_level(3)
 
 
     else:

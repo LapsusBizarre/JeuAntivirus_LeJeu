@@ -9,7 +9,7 @@ class Level:
         self.is_playing = False
 
         self.list_virus = []
-        self.list_level = [self.ecran_dacceuil,self.niveau_facile,self.niveau_moyen]
+        self.list_level = [self.ecran_dacceuil,self.niveau_facile_1,self.niveau_facile_2,self.niveau_facile_3]
         self.bouton_utilisable = {}
 
         self.coordonne = {}
@@ -30,11 +30,11 @@ class Level:
                 bouton[1073741913]=self.Blue_2
             elif element[0] == "Orange_3":
                 bouton[1073741914]=self.Orange_3
-            elif element[0] == "pink_2":
+            elif element[0] == "Pink_2":
                 bouton[1073741915]=self.Pink_2
-            elif element[0] == "green_2":
+            elif element[0] == "Green_2":
                 bouton[1073741916]=self.Green_2
-            elif element[0] == "blue_3":
+            elif element[0] == "Blue_3":
                 bouton[1073741917]=self.Blue_3
             elif element[0] == "Purple_3":
                 bouton[1073741918]=self.Purple_3
@@ -115,6 +115,7 @@ class Level:
             if virus_actuelle[i][0] != None or virus_actuelle[i][1] != None :
                 coordonne_virus.append(((getattr(self,virus).rect.x + virus_actuelle[i][0],
                                          getattr(self,virus).rect.y + virus_actuelle[i][1])))
+
         for key, valeur in virus_position_list.items():  # on parcours les valeurs du dictionnaire
             for i in range(0, 3):
                 if valeur[i][0] != None or valeur[i][1] != None :
@@ -135,19 +136,29 @@ class Level:
 
 # LES NIVEAUX
     def ecran_dacceuil(self):
-        self.list_virus = [["Virus",{"x":2 , "y":0},0]]
+        self.list_virus = [["Virus",{"x":2 , "y":0},0],
+                           ["Pink_2", {"x": 2, "y": 1}, 90]]
         self.creation_virus()
 
-    def niveau_facile(self):
+    def niveau_facile_1(self):
         self.list_virus = [["Virus", {"x": 1, "y": 1}, 0],
                            ["Collision",{"x": 2, "y": 2} , 0],
                            ["Purple_3", {"x": 0.5, "y": 0.5}, 180]]
         self.creation_virus()
 
 
-    def niveau_moyen(self):
+    def niveau_facile_2(self):
         self.list_virus = [["Virus",{"x":2.5 , "y":1.5},0],
                            ["Yellow_3", {"x": 2, "y": 1}, 0],
                            ["Collision",{"x": 1, "y": 3} , 0],
                            ["Collision_2",{"x": 0.5, "y": 1.5} , 0]]
+        self.creation_virus()
+
+    def niveau_facile_3(self):
+        self.list_virus = [["Virus", {"x": 0, "y": 2}, 0],
+                           ["Pink_2", {"x": 2, "y": 1}, 90],
+                           ["Blue_2", {"x": 2.5, "y": 2.5}, 270],
+                           ["Collision", {"x": 0.5, "y": 1.5}, 0],
+                           ["Collision_2", {"x": 1.5, "y": 1.5}, 0]
+                           ]
         self.creation_virus()

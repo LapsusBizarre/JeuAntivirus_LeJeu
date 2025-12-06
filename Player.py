@@ -55,16 +55,25 @@ class Virus(Player):
 
 class Blue_2(Player):
 
-    def __init__(self):
+    def __init__(self,rotate):
         super().__init__("blue_2")
-        self.Ax = 51
-        self.Ay = 51
-        self.Bx = 125
-        self.By = 125
+        self.image = pygame.transform.rotate(self.image, rotate)
+        if rotate == 270:
+            self.Ax = 50
+            self.Ay = 120
+            self.Bx = 120
+            self.By = 50
+        else :
+            self.Ax = 51
+            self.Ay = 51
+            self.Bx = 125
+            self.By = 125
+
         self.Cx = None
         self.Cy = None
         self.rect.x -= self.Ax
         self.rect.y -= self.Ay
+
 
 class Collision(Player):
 
@@ -96,14 +105,25 @@ class Orange_3(Player):
         self.rect.x -= self.Ax
         self.rect.y -= self.Ay
 
-class Pink_2 :
+class Pink_2(Player):
 
-    def __init__(self):
-        super().__init__("pink_2")
-        self.Ax = 51
-        self.Ay = 51
-        self.Bx = 203
-        self.By = 51
+    def __init__(self,rotate=0):
+        super().__init__("Pink_2")
+        self.image = pygame.transform.rotate(self.image, rotate)
+        if rotate == 90:
+            self.Ax = 51
+            self.Ay = 51
+            self.Bx = 51
+            self.By = 195
+
+            z = self.bottom_x
+            self.bottom_x = self.bottom_y
+            self.bottom_y = z
+        else:
+            self.Ax = 51
+            self.Ay = 51
+            self.Bx = 195
+            self.By = 51
         self.Cx = None
         self.Cy = None
         self.rect.x -= self.Ax

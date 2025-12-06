@@ -24,19 +24,19 @@ play_button_rect.topleft = (200, 300)
 #Import charger nos boutons pour choisir le niveaux
 #image du bouton Junior
 Junior_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Junior_button.png')
-Junior_button = pygame.transform.scale(Junior_button, (275, 60))
+Junior_button = pygame.transform.scale(Junior_button, (275, 63))
 Junior_button_rect = Junior_button.get_rect()
 Junior_button_rect.x = math.ceil(screen.get_width()/2)
 Junior_button_rect.topleft = (500, 300)
 
 #image du bouton Master
 Master_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Master_button.png')
-Master_button = pygame.transform.scale(Master_button, (272, 60))
+Master_button = pygame.transform.scale(Master_button, (272, 65))
 Master_button_rect = Master_button.get_rect()
 Master_button_rect.topleft = (200, 200)
 
 #image du bouton Expert
 Expert_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Expert_button.png')
-Expert_button = pygame.transform.scale(Expert_button, (272, 60))
+Expert_button = pygame.transform.scale(Expert_button, (270, 65))
 Expert_button_rect = Expert_button.get_rect()
 Expert_button_rect.topleft = (500, 200)
