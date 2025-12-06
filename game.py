@@ -9,7 +9,7 @@ class Level:
         self.is_playing = False
 
         self.list_virus = []
-        self.list_level = [self.ecran_dacceuil,self.niveau_facile_1,self.niveau_facile_2,self.niveau_facile_3]
+        self.list_level = [self.ecran_dacceuil,self.niveau_facile_1,self.niveau_facile_2,self.niveau_facile_3,self.niveau_facile_4]
         self.bouton_utilisable = {}
 
         self.coordonne = {}
@@ -68,8 +68,6 @@ class Level:
                 bouton[1073741920]=self.Yellow_3
             elif element[0] == "Yellow_3":
                 bouton[56]=self.Yellow_3
-
-        print(bouton)
         return bouton
 
     def creation_liste_colisition_virus(self):
@@ -152,9 +150,9 @@ class Level:
 
         def systeme_bool(bool:bool,value_origine,value_seconde): #Systeme permettant de vérifier la presence de l'objet en fonction de sa direction en x et en y
             if bool:
-                return value_seconde-10 <= value_origine+70 <= value_seconde+10
+                return value_seconde-20 <= value_origine+70 <= value_seconde+20
             else :
-                return value_seconde-10 <= value_origine-70 <= value_seconde+10
+                return value_seconde-20 <= value_origine-70 <= value_seconde+20
 
         for i in coordonne_virus:
             for j in coordonne_autre:
@@ -187,6 +185,13 @@ class Level:
                            ["Pink_2", {"x": 2, "y": 1}, 90],
                            ["Blue_2", {"x": 2.5, "y": 2.5}, 270],
                            ["Collision", {"x": 0.5, "y": 1.5}, 0],
-                           ["Collision_2", {"x": 1.5, "y": 1.5}, 0]
-                           ]
+                           ["Collision_2", {"x": 1.5, "y": 1.5}, 0]]
+        self.creation_virus()
+
+    def niveau_facile_4(self):
+        self.list_virus = [
+            ["Blue_3", {"x": 0, "y": 0}, 0],
+            ["Purple_3", {"x": 1, "y": 1}, 90],
+            ["Collision", {"x": 2.5, "y": 1.5}, 0],
+            ["Virus", {"x": 0.5, "y": 2.5}, 0]]
         self.creation_virus()

@@ -148,7 +148,7 @@ class Blue_3(Player):
         self.Ay = 51
         self.Bx = 203
         self.By = 51
-        self.Cx = 353
+        self.Cx = 350
         self.Cy = 51
         self.rect.x -= self.Ax
         self.rect.y -= self.Ay
@@ -163,29 +163,36 @@ class Purple_3(Player):
         if rotate == 180:
             self.Bx = 53
             self.By = 51
+            self.Cx = 53
+            self.Cy = 199
+            self.rect.x -= self.Bx
+            self.rect.y -= self.By
+        elif rotate == 90:
+            self.Bx = 201
+            self.By = 199
+            self.Cx = 53
+            self.Cy = 51
+            self.rect.x -= self.Cx
+            self.rect.y -= self.Cy
         else :
             self.Bx = 201
             self.By = 199
-
-        self.Cx = 53
-        self.Cy = 199
-
-        if rotate == 180:
-            self.rect.x -= self.Bx
-            self.rect.y -= self.By
-        else :
+            self.Cx = 53
+            self.Cy = 199
             self.rect.x -= self.Ax
             self.rect.y -= self.Ay
+
+
 
 class Green_3(Player):
     def __init__(self,rotate=0):
         super().__init__("green_3")
         self.image = pygame.transform.rotate(self.image, rotate)
-        self.Ax = 51
-        self.Ay = 51
-        self.Bx = 126
-        self.By = 126
-        self.Cx = 126
+        self.Ax = 50
+        self.Ay = 50
+        self.Bx = 120
+        self.By = 120
+        self.Cx = 120
         self.Cy = 273
         self.rect.x -= self.Ax
         self.rect.y -= self.Ay

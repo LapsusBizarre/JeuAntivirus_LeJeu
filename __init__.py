@@ -27,8 +27,8 @@ while running:
         assest.screen.blit(assest.banner, assest.banner_rect)  # si je veux superposer des images, je mets mon code de l'image qui est en dessous avant celui qui est au dessus
         assest.screen.blit(assest.play_button, (200, 300))
         assest.screen.blit(assest.Junior_button, (500, 300))
-        assest.screen.blit(assest.Master_button, (200, 200))
-        assest.screen.blit(assest.Expert_button, (500, 200))
+        assest.screen.blit(assest.Master_button, (500, 200))
+        assest.screen.blit(assest.Expert_button, (200, 200))
 
         pygame.display.flip()
 
@@ -39,7 +39,6 @@ while running:
                 if assest.play_button_rect.collidepoint(event.pos):
                     game.choix_level(1)
 
-                    print(game.nb_level)
                 elif assest.Junior_button_rect.collidepoint(event.pos):
                     game.choix_level(2)
 
@@ -47,7 +46,7 @@ while running:
                     game.choix_level(3)
 
                 elif assest.Master_button_rect.collidepoint(event.pos):
-                    game.choix_level(3)
+                    game.choix_level(4)
 
 
     else:
@@ -83,7 +82,6 @@ while running:
 
             elif event.type == pygame.KEYDOWN:
                 keys = pygame.key.get_pressed()
-                print(event.key)
                 for element in game.bouton_utilisable.keys():
                     if keys[element]:
                         game.joueur_clique = game.bouton_utilisable[element]

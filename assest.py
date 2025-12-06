@@ -33,10 +33,10 @@ Junior_button_rect.topleft = (500, 300)
 Master_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Master_button.png')
 Master_button = pygame.transform.scale(Master_button, (272, 65))
 Master_button_rect = Master_button.get_rect()
-Master_button_rect.topleft = (200, 200)
+Master_button_rect.topleft = (500, 200)
 
 #image du bouton Expert
 Expert_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Expert_button.png')
 Expert_button = pygame.transform.scale(Expert_button, (270, 65))
 Expert_button_rect = Expert_button.get_rect()
-Expert_button_rect.topleft = (500, 200)
+Expert_button_rect.topleft = (200, 200)
