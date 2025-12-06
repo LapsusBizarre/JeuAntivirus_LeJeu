@@ -31,17 +31,17 @@ class Level:
             elif element[0] == "Orange_3":
                 bouton[1073741914]=self.Orange_3
             elif element[0] == "pink_2":
-                bouton[1073741915]=self.pink_2
+                bouton[1073741915]=self.Pink_2
             elif element[0] == "green_2":
-                bouton[1073741916]=self.green_2
+                bouton[1073741916]=self.Green_2
             elif element[0] == "blue_3":
-                bouton[1073741917]=self.blue_3
+                bouton[1073741917]=self.Blue_3
             elif element[0] == "Purple_3":
                 bouton[1073741918]=self.Purple_3
-            elif element[0] == "green_3":
-                bouton[1073741919]=self.green_3
-            elif element[0] == "yellow_3":
-                bouton[1073741920]=self.yellow_3
+            elif element[0] == "Green_3":
+                bouton[1073741919]=self.Green_3
+            elif element[0] == "Yellow_3":
+                bouton[1073741920]=self.Yellow_3
         return bouton
 
     def colisition_virus(self):
@@ -53,17 +53,17 @@ class Level:
                 virus_colision[1073741913] = "Blue_2"
             elif element[0] == "Orange_3":
                 virus_colision[1073741914] = "Orange_3"
-            elif element[0] == "pink_2":
+            elif element[0] == "Pink_2":
                 virus_colision[1073741915] = "Pink_2"
-            elif element[0] == "green_2":
+            elif element[0] == "Green_2":
                 virus_colision[1073741916] = "Green_2"
-            elif element[0] == "blue_3":
+            elif element[0] == "Blue_3":
                 virus_colision[1073741917] = "Blue_3"
             elif element[0] == "Purple_3":
                 virus_colision[1073741918] = "Purple_3"
-            elif element[0] == "green_3":
+            elif element[0] == "Green_3":
                 virus_colision[1073741919] = "Green_3"
-            elif element[0] == "yellow_3":
+            elif element[0] == "Yellow_3":
                 virus_colision[1073741920] = "Yellow_3"
         return virus_colision
 
@@ -106,7 +106,7 @@ class Level:
         self.virus_coordonne = self.colisition_virus()
 
 
-    def verification(self,virus,hautx:bool,hauty:bool):
+    def verification_positions_atomes(self, virus, hautx:bool, hauty:bool):
         virus_position_list = self.coordonne.copy()
         virus_actuelle = virus_position_list.pop(virus)
         coordonne_virus = []
@@ -121,7 +121,7 @@ class Level:
                     coordonne_autre.append(((getattr(self,key).rect.x + valeur[i][0],
                                              getattr(self,key).rect.y + valeur[i][1])))
 
-        def systeme_bool(bool:bool,value_origine,value_seconde):
+        def systeme_bool(bool:bool,value_origine,value_seconde): #Systeme permettant de vérifier la presence de l'objet en fonction de sa direction en x et en y
             if bool:
                 return value_seconde-10 <= value_origine+70 <= value_seconde+10
             else :
@@ -133,6 +133,7 @@ class Level:
                     return False
         return True # return true si pas de probleme or False si un atome est là
 
+# LES NIVEAUX
     def ecran_dacceuil(self):
         self.list_virus = [["Virus",{"x":2 , "y":0},0]]
         self.creation_virus()
@@ -143,6 +144,10 @@ class Level:
                            ["Purple_3", {"x": 0.5, "y": 0.5}, 180]]
         self.creation_virus()
 
+
     def niveau_moyen(self):
-        self.list_virus = [["Virus",{"x":1.5 , "y":1.5},0]]
+        self.list_virus = [["Virus",{"x":2.5 , "y":1.5},0],
+                           ["Yellow_3", {"x": 2, "y": 1}, 0],
+                           ["Collision",{"x": 1, "y": 3} , 0],
+                           ["Collision_2",{"x": 0.5, "y": 1.5} , 0]]
         self.creation_virus()

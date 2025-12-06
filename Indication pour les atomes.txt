@@ -10,6 +10,7 @@ Orange 3 : A. 51/51 B. 126/126 C. 200/51
 Pink 2 : A. 51/51 B. 203/51
 Green 2 : A. 51/51 B. 203/51
 Blue 3 : A. 52/52 B. 203/51 C. 353/51
-
 Purple 3 A.201/51 B. 201/199 C. 53/199
+Green 3 : A. 51/51 B. 126/126 C. 126/ 273
+Yellow 3 : A. 51/ 124 B. 51/273 C. 126/51 #Le A correspond à l'atome du milieu
 

@@ -1,21 +1,4 @@
 import pygame
-import math
-
-class Cercle:
-    def __init__(self, x, y, rayon):
-        self.x = x
-        self.y = y
-        self.rayon = rayon
-
-    def deplacer(self, dx, dy):
-        self.x += dx
-        self.y += dy
-
-    def collision_avec(self, autre_cercle):
-        dx = self.x - autre_cercle.x
-        dy = self.y - autre_cercle.y
-        distance = math.sqrt(dx**2 + dy**2)
-        return distance < (self.rayon + autre_cercle.rayon)
 
 class Player(pygame.sprite.Sprite):
 
@@ -55,6 +38,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.y += self.velocity
 
 class Virus(Player):
+
     def __init__(self):
 
         super().__init__("virus")
@@ -69,19 +53,6 @@ class Virus(Player):
         self.rect.x -= self.Ax
         self.rect.y -= self.Ay
 
-class Collision(Player):
-    def __init__(self):
-        super().__init__("collision")
-        self.Ax = 50
-        self.Ay = 47
-        self.Bx = None
-        self.By = None
-        self.Cx = None
-        self.Cy = None
-        self.rect.x -= self.Ax
-        self.rect.y -= self.Ay
-
-
 class Blue_2(Player):
 
     def __init__(self):
@@ -95,7 +66,25 @@ class Blue_2(Player):
         self.rect.x -= self.Ax
         self.rect.y -= self.Ay
 
+class Collision(Player):
+
+    def __init__(self):
+        super().__init__("collision")
+        self.Ax = 50
+        self.Ay = 47
+        self.Bx = None
+        self.By = None
+        self.Cx = None
+        self.Cy = None
+        self.rect.x -= self.Ax
+        self.rect.y -= self.Ay
+
+class Collision_2(Collision):
+    def __init__(self):
+        super().__init__()
+
 class Orange_3(Player):
+
     def __init__(self):
         super().__init__("orange_3")
         self.Ax = 51
@@ -107,20 +96,60 @@ class Orange_3(Player):
         self.rect.x -= self.Ax
         self.rect.y -= self.Ay
 
+class Pink_2 :
+
+    def __init__(self):
+        super().__init__("pink_2")
+        self.Ax = 51
+        self.Ay = 51
+        self.Bx = 203
+        self.By = 51
+        self.Cx = None
+        self.Cy = None
+        self.rect.x -= self.Ax
+        self.rect.y -= self.Ay
+
+class Green_2(Player):
+
+    def __init__(self):
+        super().__init__("green_2")
+        self.Ax = 51
+        self.Ay = 51
+        self.Bx = 203
+        self.By = 51
+        self.Cx = None
+        self.Cy = None
+        self.rect.x -= self.Ax
+
+class Blue_3(Player):
+    def __init__(self):
+        super().__init__("blue_3")
+        self.Ax = 51
+        self.Ay = 51
+        self.Bx = 203
+        self.By = 51
+        self.Cx = 353
+        self.Cy = 51
+        self.rect.x -= self.Ax
+        self.rect.y -= self.Ay
+
 class Purple_3(Player):
     def __init__(self,rotate=0):
         super().__init__("purple_3")
         self.image = pygame.transform.rotate(self.image, rotate)
         self.Ax = 195
         self.Ay = 51
+
         if rotate == 180:
             self.Bx = 53
             self.By = 51
         else :
             self.Bx = 201
             self.By = 199
+
         self.Cx = 53
         self.Cy = 199
+
         if rotate == 180:
             self.rect.x -= self.Bx
             self.rect.y -= self.By
@@ -128,3 +157,28 @@ class Purple_3(Player):
             self.rect.x -= self.Ax
             self.rect.y -= self.Ay
 
+class Green_3(Player):
+    def __init__(self,rotate=0):
+        super().__init__("green_3")
+        self.image = pygame.transform.rotate(self.image, rotate)
+        self.Ax = 51
+        self.Ay = 51
+        self.Bx = 126
+        self.By = 126
+        self.Cx = 126
+        self.Cy = 273
+        self.rect.x -= self.Ax
+        self.rect.y -= self.Ay
+
+class Yellow_3(Player):
+    def __init__(self, rotate=0):
+        super().__init__("yellow_3")
+        self.image = pygame.transform.rotate(self.image, rotate)
+        self.Ax = 51
+        self.Ay = 124
+        self.Bx = 51
+        self.By = 273
+        self.Cx = 126
+        self.Cy = 51
+        self.rect.x -= self.Ax
+        self.rect.y -= self.Ay
