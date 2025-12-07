@@ -105,11 +105,7 @@ class Level:
             self.level_complete = False
             self.joueur_clique = self.Virus
         except IndexError :
-            pygame.font.init()
-            my_font = pygame.font.SysFont('Comic Sans MS', 30)
-            text_surface = my_font.render('Merci d\'avoir jouer au jeu', False, (255, 255, 255))
-            screen = pygame.display.set_mode((960,600))
-            screen.blit(text_surface, (300, 300))
+
             self.is_playing = False
 
 
