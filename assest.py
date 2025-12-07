@@ -15,6 +15,7 @@ banner_rect = banner.get_rect()
 banner_rect.bottomright = (960,600)
 
 #import charger notre bouton pour lancer la partie
+
 #image du bouton Starter
 play_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Startbutton.png')
 play_button = pygame.transform.scale(play_button, (272, 61))
@@ -37,6 +38,9 @@ Master_button_rect.topleft = (500, 200)
 
 #image du bouton Expert
 Expert_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Expert_button.png')
-Expert_button = pygame.transform.scale(Expert_button, (270, 65))
+#Expert_button = pygame.transform.scale(Expert_button, (270, 65))
 Expert_button_rect = Expert_button.get_rect()
 Expert_button_rect.topleft = (200, 200)
+
+Cercle = pygame.image.load('PygameAssets-Jeu_AntiVirus/Cercle.png')
+#Cercle = pygame.transform.scale(Cercle, (300, 300))

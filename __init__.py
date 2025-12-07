@@ -27,10 +27,11 @@ while running:
     if not game.is_playing :
         assest.screen.blit(assest.background_intro, (0, 0))
         assest.screen.blit(assest.banner, assest.banner_rect)  # si je veux superposer des images, je mets mon code de l'image qui est en dessous avant celui qui est au dessus
-        assest.screen.blit(assest.play_button, (200, 300))
-        assest.screen.blit(assest.Junior_button, (500, 300))
-        assest.screen.blit(assest.Master_button, (500, 200))
-        assest.screen.blit(assest.Expert_button, (200, 200))
+        assest.screen.blit(assest.play_button, (125, 425))
+        assest.screen.blit(assest.Junior_button, (125, 275))
+        assest.screen.blit(assest.Master_button, (575, 425))
+        assest.screen.blit(assest.Expert_button, (575, 275))
+        assest.screen.blit(assest.Cercle,(320, 200))
 
         pygame.display.flip()
 
