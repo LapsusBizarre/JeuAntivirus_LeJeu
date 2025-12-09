@@ -96,7 +96,7 @@ while running:
             texte =value + " : Press " + keys_retravailler
             color = (0,0,0)
             font = pygame.font.SysFont('Segoe UI', 24)
-            if value == game.virus_clique :
+            if value == game.string_virus_clique :
                 color = (255,0,0)
             position_atome = font.render(str(texte) , False, color)
             y = y +40
@@ -125,24 +125,24 @@ while running:
                 keys = pygame.key.get_pressed()
                 for element in game.bouton_utilisable.keys():
                     if keys[element]:
-                        game.joueur_clique = game.bouton_utilisable[element]
-                        game.virus_clique = game.liste_virus_utilise[element]
+                        game.class_virus_clique = game.bouton_utilisable[element]
+                        game.string_virus_clique = game.liste_virus_utilise[element]
 
-                if event.key == pygame.K_RIGHT and (game.joueur_clique.rect.x< 740 - game.joueur_clique.bottom_x  and game.joueur_clique.rect.y > 39) :
-                    if game.verification_positions_atomes(game.virus_clique, True, False):
-                        game.joueur_clique.move_right()
+                if event.key == pygame.K_RIGHT and (game.class_virus_clique.rect.x < 740 - game.class_virus_clique.bottom_x and game.class_virus_clique.rect.y > 39) :
+                    if game.verification_positions_atomes(game.string_virus_clique, True, False):
+                        game.class_virus_clique.move_right()
                         nb_mouvement += 1
-                elif event.key == pygame.K_LEFT  and (game.joueur_clique.rect.x > 215 and game.joueur_clique.rect.y< 562 - game.joueur_clique.bottom_y) :
-                    if game.verification_positions_atomes(game.virus_clique, False, True):
-                        game.joueur_clique.move_left()
+                elif event.key == pygame.K_LEFT  and (game.class_virus_clique.rect.x > 215 and game.class_virus_clique.rect.y < 562 - game.class_virus_clique.bottom_y) :
+                    if game.verification_positions_atomes(game.string_virus_clique, False, True):
+                        game.class_virus_clique.move_left()
                         nb_mouvement += 1
-                elif event.key == pygame.K_UP and (game.joueur_clique.rect.x > 216 and game.joueur_clique.rect.y  > 39 ) :
-                    if game.verification_positions_atomes(game.virus_clique, False, False):
-                        game.joueur_clique.move_up()
+                elif event.key == pygame.K_UP and (game.class_virus_clique.rect.x > 216 and game.class_virus_clique.rect.y > 39) :
+                    if game.verification_positions_atomes(game.string_virus_clique, False, False):
+                        game.class_virus_clique.move_up()
                         nb_mouvement += 1
-                elif event.key == pygame.K_DOWN and ( game.joueur_clique.rect.x < 740 - game.joueur_clique.bottom_x and game.joueur_clique.rect.y < 562 -game.joueur_clique.bottom_y) :
-                    if game.verification_positions_atomes(game.virus_clique, True, True):
-                        game.joueur_clique.move_down()
+                elif event.key == pygame.K_DOWN and (game.class_virus_clique.rect.x < 740 - game.class_virus_clique.bottom_x and game.class_virus_clique.rect.y < 562 - game.class_virus_clique.bottom_y) :
+                    if game.verification_positions_atomes(game.string_virus_clique, True, True):
+                        game.class_virus_clique.move_down()
                         nb_mouvement += 1
 
 

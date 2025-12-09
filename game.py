@@ -1,5 +1,4 @@
 import Player
-import pygame
 
 class Level:
 
@@ -14,7 +13,7 @@ class Level:
         self.bouton_utilisable = {}  # Liste les boutons qui seront utilisés dans le niveau selectioné
         self.coordonnes_fixes_des_atomes = {} # Recupere la position des differents atomes dans l'image des atomes
         self.liste_virus_utilise = {} # Liste le nom en string du virus du niveau utilisé
-        self.virus_clique = "Virus"
+        self.string_virus_clique = "Virus"
 
         # Ensemble des caractéristiques de l'aiguille sur l'ecran d'acceuil
         self.last_aiguille_angle = 300
@@ -30,7 +29,7 @@ class Level:
         self.nb_level = -1
         self.next_level()
         self.level_complete = False
-        self.joueur_clique = None
+        self.class_virus_clique = None
 
 # Permet la création de la liste qui sert à indiquer la liste des atomes bougeables
     def creation_liste_numpad_virus(self): # Permet de définir les touches "autorisées" pour bouger les players existants
@@ -169,7 +168,7 @@ class Level:
             self.nb_level += 1
             self.list_level[self.nb_level]()
             self.level_complete = False
-            self.joueur_clique = self.Virus
+            self.class_virus_clique = self.Virus
         except IndexError :
             self.is_playing = False
 
