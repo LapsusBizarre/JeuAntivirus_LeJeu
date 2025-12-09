@@ -22,4 +22,4 @@ Pour le déplacement, nous utilisons les flèches du clavier.
 
 Pour la création du jeu, nous avons utilisé les assets du jeu original.
 
-Le PowerPoint est accesible au lien suivant : https://docs.google.com/presentation/d/1u3JmesJbC_7wnh5zDezJTVP4hiDiCISM/edit?usp=sharing&ouid=113691812752298326174&rtpof=true&sd=true
+Le PDF de presentation est disponible à l'adresse "Jeu-Anti-Virus-Une-Presentation-Technique.pdf" dans les fichiers
