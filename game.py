@@ -27,6 +27,7 @@ class Level:
                            self.niveau_facile_3,
                            self.niveau_facile_4]
         self.nb_level = -1
+        self.nombre_de_niveau_par_level = 1 # Nombre de niveau par "Level"
         self.next_level()
         self.level_complete = False
         self.class_virus_clique = None

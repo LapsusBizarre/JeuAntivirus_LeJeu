@@ -51,3 +51,16 @@ def Roue_et_Aiguille(Aiguille_angle, tuple_position):
     screen.blit(Aiguille, tuple_position)
 
     pygame.display.flip()
+
+def menu(level_int:int):
+    level_list = ["Green", "Orange", "Red", "Blue"]
+    Home = pygame.image.load(f'PygameAssets-Jeu_AntiVirus/Home_{level_list[level_int]}.png')
+    Home_rect = Home.get_rect()
+    Home_rect.topleft = (50, 500)
+    screen.blit(Home, (50, 500))
+
+    Reload = pygame.image.load(f'PygameAssets-Jeu_AntiVirus/Reload_{level_list[level_int]}.png')
+    Reload_rect = Reload.get_rect()
+    Reload_rect.topleft = (50, 430)
+    screen.blit(Reload, (50, 430))
+    return Home_rect, Reload_rect

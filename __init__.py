@@ -3,6 +3,7 @@
 import pygame
 import game
 import assest
+import math
 
 from threading import Event
 
@@ -54,13 +55,15 @@ while running:
                     game.choix_level(3)
 
                 elif assest.Master_button_rect.collidepoint(event.pos):
-                    game.last_aiguille_angle = 180
+                    game.last_aiguille_angle = 60
                     game.last_aiguille_tuple = (425, 297)
                     assest.Roue_et_Aiguille(60,(425, 297))
                     Event().wait(1.5)
                     game.choix_level(4)
 
-
+            elif event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
 
     else:
         #appliquer l'arriere plan de notre jeu
@@ -109,7 +112,10 @@ while running:
             joueur = getattr(game, element[0])
             screen.blit(joueur.image, joueur.rect) #player.rect est le déplacement
 
-        #mettre à jour l'écran
+
+        Home_rect, Reload_rect = assest.menu((game.nb_level//game.nombre_de_niveau_par_level)-1)
+
+        # mettre à jour l'écran
         pygame.display.flip()
 
         for event in pygame.event.get():
@@ -117,7 +123,6 @@ while running:
             if event.type == pygame.QUIT:
                 running = False
                 pygame.quit()
-                print("Fermeture du jeu")
 
             # détecte si un joueur lâche une touche du clavier
 
@@ -146,4 +151,10 @@ while running:
                         nb_mouvement += 1
 
 
-                # Permet l'initalisation du debut - PROBLEME : le systeme de niveau n'est pas implementé
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if Home_rect.collidepoint(event.pos):
+                    game.is_playing = False
+                elif Reload_rect.collidepoint(event.pos):
+                    game.choix_level(game.nb_level)
+                    nb_mouvement = 0
