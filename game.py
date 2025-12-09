@@ -82,29 +82,29 @@ class Level:
                 bouton[56]=self.Yellow_3
         return bouton
 
-# Permet la création de la liste qui sert à indiquer les atomes present afin de gerer les colisions
-    def creation_liste_colisition_virus(self):
-        virus_colision = {}
+# Permet la création de la liste qui sert à indiquer les atomes present afin de gerer les collisions
+    def creation_liste_collision_virus(self):
+        virus_collision = {}
         for element in self.list_virus:
             if element[0] == "Virus":
-                virus_colision[1073741922] = "Virus"
+                virus_collision[1073741922] = "Virus"
             elif element[0] == "Blue_2":
-                virus_colision[1073741913] = "Blue_2"
+                virus_collision[1073741913] = "Blue_2"
             elif element[0] == "Orange_3":
-                virus_colision[1073741914] = "Orange_3"
+                virus_collision[1073741914] = "Orange_3"
             elif element[0] == "Pink_2":
-                virus_colision[1073741915] = "Pink_2"
+                virus_collision[1073741915] = "Pink_2"
             elif element[0] == "Green_2":
-                virus_colision[1073741916] = "Green_2"
+                virus_collision[1073741916] = "Green_2"
             elif element[0] == "Blue_3":
-                virus_colision[1073741917] = "Blue_3"
+                virus_collision[1073741917] = "Blue_3"
             elif element[0] == "Purple_3":
-                virus_colision[1073741918] = "Purple_3"
+                virus_collision[1073741918] = "Purple_3"
             elif element[0] == "Green_3":
-                virus_colision[1073741919] = "Green_3"
+                virus_collision[1073741919] = "Green_3"
             elif element[0] == "Yellow_3":
-                virus_colision[1073741920] = "Yellow_3"
-        return virus_colision
+                virus_collision[1073741920] = "Yellow_3"
+        return virus_collision
 
 # Permet l'assignation des differents atomes qui vont apparaitre, leurs positions, et leur touche assignée
     def creation_virus(self):
@@ -123,36 +123,39 @@ class Level:
                                                          (getattr(self, name[0]).Cx,getattr(self, name[0]).Cy)]
 
         self.bouton_utilisable = self.creation_liste_numpad_virus() # Permet d'assigner à un dictionnaire le lien touche/Nom de l'atome
-        self.liste_virus_utilise = self.creation_liste_colisition_virus() # Permet d'assigner à un dictionnaire le lien touche/Classe de l'atome
-        print(self.liste_virus_utilise)
+        self.liste_virus_utilise = self.creation_liste_collision_virus() # Permet d'assigner à un dictionnaire le lien touche/Classe de l'atome
+
 # Permet de vérifier la position de tous les atomes presents
     def verification_positions_atomes(self, virus, hautx:bool, hauty:bool):
-        virus_position_list = self.coordonnes_fixes_des_atomes.copy()
-        virus_actuelle = virus_position_list.pop(virus)
+
+        virus_position_list = self.coordonnes_fixes_des_atomes.copy() #Recupere l'ensemble des coordonnées fixes sous la forme de dictionnaire
+        virus_actuelle = virus_position_list.pop(virus) # Recuperer les valeurs du virus recherché et sépare en deux entités différentes l'atome selectionné et l'ensemble des autres virus
+
         coordonne_virus = []
         coordonne_autre = []
-        for i in range(0,3):
-            if virus_actuelle[i][0] != None or virus_actuelle[i][1] != None :
-                coordonne_virus.append(((getattr(self,virus).rect.x + virus_actuelle[i][0],
-                                         getattr(self,virus).rect.y + virus_actuelle[i][1])))
 
-        for key, valeur in virus_position_list.items():  # on parcourt les valeurs du dictionnaire
+        for i in range(0,3):
+            if virus_actuelle[i][0] is not None or virus_actuelle[i][1] is not None :
+                coordonne_virus.append(((getattr(self,virus).rect.x + virus_actuelle[i][0],
+                                         getattr(self,virus).rect.y + virus_actuelle[i][1]))) #Recuperer le pixel (1,1) de l'image du virus et ajoute la position sur de l'atome par rapport à l'image du son virus
+
+        for key, valeur in virus_position_list.items():  # on parcourt les valeurs du dictionnaire pour recuperer les coordonées des autres virus du jeu
             for i in range(0, 3):
-                if valeur[i][0] != None or valeur[i][1] != None :
+                if valeur[i][0] is not None or valeur[i][1] is not None :
                     coordonne_autre.append(((getattr(self,key).rect.x + valeur[i][0],
-                                             getattr(self,key).rect.y + valeur[i][1])))
+                                             getattr(self,key).rect.y + valeur[i][1])))#Recuperer le pixel (1,1) de l'image du virus et ajoute la position sur de l'atome par rapport à l'image du son virus
 
         def systeme_bool(bool:bool,value_origine,value_seconde): #Systeme permettant de vérifier la presence de l'objet en fonction de sa direction en x et en y
             if bool:
-                return value_seconde-20 <= value_origine+70 <= value_seconde+20
+                return value_seconde-20 <= value_origine+70 <= value_seconde+20 # Verifie si un atome dans la future nouvelle position (en direction du bas) ne touche pas un atome à plus ou moins 20 pixels près sur l'axe selectionner
             else :
-                return value_seconde-20 <= value_origine-70 <= value_seconde+20
+                return value_seconde-20 <= value_origine-70 <= value_seconde+20 # Verifie si un atome dans la future nouvelle position (en direction du haut) ne touche pas un atome à plus ou moins 20 pixels près sur l'axe séléctionner
 
         for i in coordonne_virus:
             for j in coordonne_autre:
                 if systeme_bool(hautx,i[0],j[0]) and systeme_bool(hauty,i[1],j[1]):
                     return False
-        return True # return true si pas de probleme or False si un atome est là
+        return True # return True si pas de problème ou False si un atome est là
 
 # Permet le systeme de selection des niveaux
     def choix_level(self,valeur):
