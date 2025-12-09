@@ -7,7 +7,7 @@ class Player(pygame.sprite.Sprite):
         # Fait appelle à la classe Pygame
         super().__init__()
         # Permet d'initialiser pour chaque virus demandé
-        self.image = pygame.image.load(f'PygameAssets-Jeu_AntiVirus/{name}.PNG')
+        self.image = pygame.image.load(f'PygameAssets-Jeu_AntiVirus/{name}.png')
         self.rect = self.image.get_rect()
 
         # Permet de définir la taille du déplacement
@@ -41,7 +41,7 @@ class Virus(Player):
 
     def __init__(self):
 
-        super().__init__("virus")
+        super().__init__("Virus")
 
         self.Ax = 51
         self.Ay = 51

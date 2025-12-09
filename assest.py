@@ -1,5 +1,4 @@
 import pygame
-import math
 
 screen = pygame.display.set_mode((960,600))
 
@@ -17,30 +16,38 @@ banner_rect.bottomright = (960,600)
 #import charger notre bouton pour lancer la partie
 
 #image du bouton Starter
-play_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Startbutton.png')
-play_button = pygame.transform.scale(play_button, (272, 61))
-play_button_rect = play_button.get_rect()
-play_button_rect.topleft = (200, 300)
+Start_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Startbutton.png')
+Start_button_rect = Start_button.get_rect()
+Start_button_rect.topleft = (125, 400)
 
 #Import charger nos boutons pour choisir le niveaux
 #image du bouton Junior
 Junior_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Junior_button.png')
-Junior_button = pygame.transform.scale(Junior_button, (275, 63))
 Junior_button_rect = Junior_button.get_rect()
-Junior_button_rect.x = math.ceil(screen.get_width()/2)
-Junior_button_rect.topleft = (500, 300)
+Junior_button_rect.topleft = (125, 275)
 
 #image du bouton Master
 Master_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Master_button.png')
-Master_button = pygame.transform.scale(Master_button, (272, 65))
 Master_button_rect = Master_button.get_rect()
-Master_button_rect.topleft = (500, 200)
+Master_button_rect.topleft = (575, 400)
 
 #image du bouton Expert
 Expert_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Expert_button.png')
-#Expert_button = pygame.transform.scale(Expert_button, (270, 65))
 Expert_button_rect = Expert_button.get_rect()
-Expert_button_rect.topleft = (200, 200)
+Expert_button_rect.topleft = (575, 275)
 
 Cercle = pygame.image.load('PygameAssets-Jeu_AntiVirus/Cercle.png')
-#Cercle = pygame.transform.scale(Cercle, (300, 300))
+
+def Roue_et_Aiguille(Aiguille_angle, tuple_position):
+    screen.blit(background_intro, (0, 0))
+    screen.blit(banner,banner_rect)  # si je veux superposer des images, je mets mon code de l'image qui est en dessous avant celui qui est au dessus
+    screen.blit(Start_button, (125, 400))
+    screen.blit(Junior_button, (125, 275))
+    screen.blit(Master_button, (575, 400))
+    screen.blit(Expert_button, (575, 275))
+    screen.blit(Cercle, (320, 200))
+    Aiguille = pygame.image.load('PygameAssets-Jeu_AntiVirus/Aiguille.png')
+    Aiguille = pygame.transform.rotate(Aiguille, Aiguille_angle)
+    screen.blit(Aiguille, tuple_position)
+
+    pygame.display.flip()

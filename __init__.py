@@ -4,7 +4,8 @@ import pygame
 import game
 import assest
 
-import time
+from threading import Event
+
 
 pygame.init()
 pygame.font.init()
@@ -25,31 +26,40 @@ nb_mouvement = 0
 #boucle tant que cette condition est vraie
 while running:
     if not game.is_playing :
-        assest.screen.blit(assest.background_intro, (0, 0))
-        assest.screen.blit(assest.banner, assest.banner_rect)  # si je veux superposer des images, je mets mon code de l'image qui est en dessous avant celui qui est au dessus
-        assest.screen.blit(assest.play_button, (125, 425))
-        assest.screen.blit(assest.Junior_button, (125, 275))
-        assest.screen.blit(assest.Master_button, (575, 425))
-        assest.screen.blit(assest.Expert_button, (575, 275))
-        assest.screen.blit(assest.Cercle,(320, 200))
-
-        pygame.display.flip()
+        assest.Roue_et_Aiguille(game.last_aiguille_angle,game.last_aiguille_tuple)
 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # vérification pour savoir si la souris est en collision avec le bouton jouer
                     # mettre le jeu en mode "lancé"
-                if assest.play_button_rect.collidepoint(event.pos):
+                if assest.Start_button_rect.collidepoint(event.pos):
+                    game.last_aiguille_angle = 300
+                    game.last_aiguille_tuple = (296, 300)
+                    assest.Roue_et_Aiguille(300,(296, 300))
+                    Event().wait(1.5)
                     game.choix_level(1)
 
                 elif assest.Junior_button_rect.collidepoint(event.pos):
+                    game.last_aiguille_angle = 240
+                    game.last_aiguille_tuple = (294, 224)
+                    assest.Roue_et_Aiguille(240,(294, 224))
+                    Event().wait(1.5)
                     game.choix_level(2)
 
                 elif assest.Expert_button_rect.collidepoint(event.pos):
+                    game.last_aiguille_angle = 120
+                    game.last_aiguille_tuple = (423, 223)
+                    assest.Roue_et_Aiguille(120,(423, 223))
+                    Event().wait(1.5)
                     game.choix_level(3)
 
                 elif assest.Master_button_rect.collidepoint(event.pos):
+                    game.last_aiguille_angle = 180
+                    game.last_aiguille_tuple = (425, 297)
+                    assest.Roue_et_Aiguille(60,(425, 297))
+                    Event().wait(1.5)
                     game.choix_level(4)
+
 
 
     else:
@@ -81,7 +91,7 @@ while running:
         level_actuel = my_font.render(text_level , False, (0, 0, 0))
         screen.blit(level_actuel, (770, 90))
         y = 190
-        for keys, value in game.virus_coordonne.items() :
+        for keys, value in game.liste_virus_utilise.items() :
             keys_retravailler = str(pygame.key.name(keys))[1]
             texte =value + " : Press " + keys_retravailler
             color = (0,0,0)
@@ -116,7 +126,7 @@ while running:
                 for element in game.bouton_utilisable.keys():
                     if keys[element]:
                         game.joueur_clique = game.bouton_utilisable[element]
-                        game.virus_clique = game.virus_coordonne[element]
+                        game.virus_clique = game.liste_virus_utilise[element]
 
                 if event.key == pygame.K_RIGHT and (game.joueur_clique.rect.x< 740 - game.joueur_clique.bottom_x  and game.joueur_clique.rect.y > 39) :
                     if game.verification_positions_atomes(game.virus_clique, True, False):

@@ -3,24 +3,36 @@ import pygame
 
 class Level:
 
-#liste des virus possible :  Virus ,Blue_2,Orange_3,Pink_2,Green_2,Blue_3,Purple_3,Green_3,Yellow_3]
+#liste des virus possible :  Virus ,Blue_2,Orange_3,Pink_2,Green_2,Blue_3,Purple_3,Green_3,Yellow_3
 
     def __init__(self):
+
+        # Le booléen permet de différencier si l'utilisateur doit être sur une session "acceuil" ou "en jeux"
         self.is_playing = False
 
-        self.list_virus = []
-        self.list_level = [self.ecran_dacceuil,self.niveau_facile_1,self.niveau_facile_2,self.niveau_facile_3,self.niveau_facile_4]
-        self.bouton_utilisable = {}
 
-        self.coordonne = {}
-        self.virus_coordonne = {}
+        self.bouton_utilisable = {}  # Liste les boutons qui seront utilisés dans le niveau selectioné
+        self.coordonnes_fixes_des_atomes = {} # Recupere la position des differents atomes dans l'image des atomes
+        self.liste_virus_utilise = {} # Liste le nom en string du virus du niveau utilisé
         self.virus_clique = "Virus"
 
+        # Ensemble des caractéristiques de l'aiguille sur l'ecran d'acceuil
+        self.last_aiguille_angle = 300
+        self.last_aiguille_tuple = (296, 300)
+
+        self.list_virus = [] # Initialisation de la liste avec les détails du niveau
+        # Liste des niveaux disponibles, le niveau 0 existant pour eviter les erreurs
+        self.list_level = [self.ecran_dacceuil,
+                           self.niveau_facile_1,
+                           self.niveau_facile_2,
+                           self.niveau_facile_3,
+                           self.niveau_facile_4]
         self.nb_level = -1
         self.next_level()
         self.level_complete = False
-        self.joueur_clique = self.Virus
+        self.joueur_clique = None
 
+# Permet la création de la liste qui sert à indiquer la liste des atomes bougeables
     def creation_liste_numpad_virus(self): # Permet de définir les touches "autorisées" pour bouger les players existants
         bouton = {}
         for element in self.list_virus:
@@ -70,6 +82,7 @@ class Level:
                 bouton[56]=self.Yellow_3
         return bouton
 
+# Permet la création de la liste qui sert à indiquer les atomes present afin de gerer les colisions
     def creation_liste_colisition_virus(self):
         virus_colision = {}
         for element in self.list_virus:
@@ -93,24 +106,9 @@ class Level:
                 virus_colision[1073741920] = "Yellow_3"
         return virus_colision
 
-    def choix_level(self,valeur):
-        self.nb_level = (valeur-1)
-        self.next_level()
-        self.is_playing = True
-
-    def next_level(self):
-        try :
-            self.nb_level += 1
-            self.list_level[self.nb_level]()
-            self.level_complete = False
-            self.joueur_clique = self.Virus
-        except IndexError :
-
-            self.is_playing = False
-
-
+# Permet l'assignation des differents atomes qui vont apparaitre, leurs positions, et leur touche assignée
     def creation_virus(self):
-        self.coordonne = {}
+        self.coordonnes_fixes_des_atomes = {}
         for name in self.list_virus:
             if name[2] != 0:
                 setattr(self, name[0], getattr(Player, name[0])(name[2]))
@@ -120,16 +118,16 @@ class Level:
             getattr(self, name[0]).rect.x += 140*name[1]["x"]
             getattr(self, name[0]).rect.y += 140*name[1]["y"]
 
-            self.coordonne[name[0]] = [(getattr(self, name[0]).Ax,getattr(self, name[0]).Ay),
-                               (getattr(self, name[0]).Bx,getattr(self, name[0]).By),
-                               (getattr(self, name[0]).Cx,getattr(self, name[0]).Cy)]
+            self.coordonnes_fixes_des_atomes[name[0]] = [(getattr(self, name[0]).Ax, getattr(self, name[0]).Ay),
+                                                         (getattr(self, name[0]).Bx,getattr(self, name[0]).By),
+                                                         (getattr(self, name[0]).Cx,getattr(self, name[0]).Cy)]
 
-        self.bouton_utilisable = self.creation_liste_numpad_virus()
-        self.virus_coordonne = self.creation_liste_colisition_virus()
-
-
+        self.bouton_utilisable = self.creation_liste_numpad_virus() # Permet d'assigner à un dictionnaire le lien touche/Nom de l'atome
+        self.liste_virus_utilise = self.creation_liste_colisition_virus() # Permet d'assigner à un dictionnaire le lien touche/Classe de l'atome
+        print(self.liste_virus_utilise)
+# Permet de vérifier la position de tous les atomes presents
     def verification_positions_atomes(self, virus, hautx:bool, hauty:bool):
-        virus_position_list = self.coordonne.copy()
+        virus_position_list = self.coordonnes_fixes_des_atomes.copy()
         virus_actuelle = virus_position_list.pop(virus)
         coordonne_virus = []
         coordonne_autre = []
@@ -138,7 +136,7 @@ class Level:
                 coordonne_virus.append(((getattr(self,virus).rect.x + virus_actuelle[i][0],
                                          getattr(self,virus).rect.y + virus_actuelle[i][1])))
 
-        for key, valeur in virus_position_list.items():  # on parcours les valeurs du dictionnaire
+        for key, valeur in virus_position_list.items():  # on parcourt les valeurs du dictionnaire
             for i in range(0, 3):
                 if valeur[i][0] != None or valeur[i][1] != None :
                     coordonne_autre.append(((getattr(self,key).rect.x + valeur[i][0],
@@ -156,7 +154,26 @@ class Level:
                     return False
         return True # return true si pas de probleme or False si un atome est là
 
-# LES NIVEAUX
+# Permet le systeme de selection des niveaux
+    def choix_level(self,valeur):
+        self.nb_level = (valeur-1)
+        self.next_level()
+        self.is_playing = True
+
+# Permet d'automatiser le changement de niveau
+    def next_level(self):
+        try :
+            self.nb_level += 1
+            self.list_level[self.nb_level]()
+            self.level_complete = False
+            self.joueur_clique = self.Virus
+        except IndexError :
+            self.is_playing = False
+
+
+
+# LES NIVEAUX : Le format [[Nom_de_l'atome_1 , {"x" : position en x*70, "y" : position en y*70}, angle de rotation], etc]
+
     def ecran_dacceuil(self):
         self.list_virus = [["Virus",{"x":2 , "y":0},0],
                            ["Pink_2", {"x": 2, "y": 1}, 90]]
@@ -185,9 +202,8 @@ class Level:
         self.creation_virus()
 
     def niveau_facile_4(self):
-        self.list_virus = [
-            ["Blue_3", {"x": 0, "y": 0}, 0],
-            ["Purple_3", {"x": 1, "y": 1}, 90],
-            ["Collision", {"x": 2.5, "y": 1.5}, 0],
-            ["Virus", {"x": 0.5, "y": 2.5}, 0]]
+        self.list_virus = [["Blue_3", {"x": 0, "y": 0}, 0],
+                           ["Purple_3", {"x": 1, "y": 1}, 90],
+                           ["Collision", {"x": 2.5, "y": 1.5}, 0],
+                           ["Virus", {"x": 0.5, "y": 2.5}, 0]]
         self.creation_virus()
