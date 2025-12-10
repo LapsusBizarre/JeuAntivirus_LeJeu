@@ -15,6 +15,11 @@ banner_rect.bottomright = (960,600)
 
 #import charger notre bouton pour lancer la partie
 
+Fleche_start = pygame.image.load('PygameAssets-Jeu_AntiVirus/Fleche.png')
+Fleche_junior = pygame.image.load('PygameAssets-Jeu_AntiVirus/Fleche.png')
+Fleche_master = pygame.image.load('PygameAssets-Jeu_AntiVirus/Fleche.png')
+Fleche_expert = pygame.image.load('PygameAssets-Jeu_AntiVirus/Fleche.png')
+
 #image du bouton Starter
 Start_button = pygame.image.load('PygameAssets-Jeu_AntiVirus/Startbutton.png')
 Start_button_rect = Start_button.get_rect()
@@ -42,10 +47,19 @@ def Roue_et_Aiguille(Aiguille_angle, tuple_position):
     screen.blit(background_intro, (0, 0))
     screen.blit(banner,banner_rect)  # si je veux superposer des images, je mets mon code de l'image qui est en dessous avant celui qui est au dessus
     screen.blit(Start_button, (125, 400))
+    screen.blit(Fleche_start, (140, 410))
+
     screen.blit(Junior_button, (125, 275))
+    screen.blit(Fleche_junior, (140, 285))
+
     screen.blit(Master_button, (575, 400))
     screen.blit(Expert_button, (575, 275))
+
+    screen.blit(Fleche_master, (645, 285))
+    screen.blit(Fleche_expert, (645, 410))
+
     screen.blit(Cercle, (320, 200))
+
     Aiguille = pygame.image.load('PygameAssets-Jeu_AntiVirus/Aiguille.png')
     Aiguille = pygame.transform.rotate(Aiguille, Aiguille_angle)
     screen.blit(Aiguille, tuple_position)
