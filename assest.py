@@ -63,4 +63,10 @@ def menu(level_int:int):
     Reload_rect = Reload.get_rect()
     Reload_rect.topleft = (50, 430)
     screen.blit(Reload, (50, 430))
-    return Home_rect, Reload_rect
+
+    Next = pygame.image.load(f'PygameAssets-Jeu_AntiVirus/Next_{level_list[level_int]}.png')
+    Next_rect = Next.get_rect()
+    Next_rect.topleft = (50, 360)
+    screen.blit(Next, (50, 360))
+
+    return Home_rect, Reload_rect, Next_rect

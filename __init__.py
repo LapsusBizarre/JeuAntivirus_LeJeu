@@ -113,7 +113,7 @@ while running:
             screen.blit(joueur.image, joueur.rect) #player.rect est le déplacement
 
 
-        Home_rect, Reload_rect = assest.menu((game.nb_level//game.nombre_de_niveau_par_level)-1) # Formule pour automatiser le changement de couleur
+        Home_rect, Reload_rect, Next_rect = assest.menu((game.nb_level//game.nombre_de_niveau_par_level)-1) # Formule pour automatiser le changement de couleur
 
         # mettre à jour l'écran
         pygame.display.flip()
@@ -158,3 +158,5 @@ while running:
                 elif Reload_rect.collidepoint(event.pos):
                     game.choix_level(game.nb_level)
                     nb_mouvement = 0
+                elif Next_rect.collidepoint(event.pos):
+                    game.next_level()
