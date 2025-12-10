@@ -3,7 +3,6 @@
 import pygame
 import game
 import assest
-import math
 
 from threading import Event
 
@@ -37,28 +36,28 @@ while running:
                     game.last_aiguille_angle = 300
                     game.last_aiguille_tuple = (296, 300)
                     assest.Roue_et_Aiguille(300,(296, 300))
-                    Event().wait(1.5)
+                    Event().wait(1)
                     game.choix_level(1)
 
                 elif assest.Junior_button_rect.collidepoint(event.pos):
                     game.last_aiguille_angle = 240
                     game.last_aiguille_tuple = (294, 224)
                     assest.Roue_et_Aiguille(240,(294, 224))
-                    Event().wait(1.5)
+                    Event().wait(1)
                     game.choix_level(2)
 
                 elif assest.Expert_button_rect.collidepoint(event.pos):
                     game.last_aiguille_angle = 120
                     game.last_aiguille_tuple = (423, 223)
                     assest.Roue_et_Aiguille(120,(423, 223))
-                    Event().wait(1.5)
+                    Event().wait(1)
                     game.choix_level(3)
 
                 elif assest.Master_button_rect.collidepoint(event.pos):
                     game.last_aiguille_angle = 60
                     game.last_aiguille_tuple = (425, 297)
                     assest.Roue_et_Aiguille(60,(425, 297))
-                    Event().wait(1.5)
+                    Event().wait(1)
                     game.choix_level(4)
 
             elif event.type == pygame.QUIT:
